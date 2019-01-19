@@ -1,0 +1,15 @@
+- hosts: ios
+  gather_facts: no
+
+  vars:
+     names:
+       - user1
+       - user2
+
+  tasks:
+     - name: remove users
+       ios_user:
+         name: "{{ item }}"
+         state: present
+         privilege: 15
+       with_items: "{{ names }}"
